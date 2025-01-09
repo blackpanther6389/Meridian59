@@ -47,7 +47,7 @@ constants:
    USER_RUNNING_SPEED = 36
 
    % How many packets incoming per second do we allow?
-   INCOMING_PACKET_THROTTLE = 5
+   INCOMING_PACKET_THROTTLE = 20
 
    % What's the lower threshold for being able to run?  Below this, we can't
    %  run.
@@ -2934,7 +2934,7 @@ messages:
       % Check the delta since the last time we moved.  Keep an upper bound on
       %  the delta, since people could just be moving from rest.
       iCurrentTime = GetTime();
-      iDelta = iCurrentTime - piLastMoveUpdateTime;
+      iDelta = iCurrentTime - (piLastMoveUpdateTime / 4);
 
       %  Make sure this person is not lagging; increment our counter since we
       %  got a move packet, then adjust for last movement time.
